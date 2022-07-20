@@ -343,7 +343,11 @@ const AppointmentPage: NextPage = () => {
               }
             >
               {statusList.map((item: any) => {
-                return <Option value={item.id}>{item.label}</Option>;
+                return (
+                  <Option key={`statusList-${item.id}`} value={item.id}>
+                    {item.label}
+                  </Option>
+                );
               })}
             </Select>
           </Form.Item>
@@ -402,7 +406,14 @@ const AppointmentPage: NextPage = () => {
                   }
                 >
                   {countryList.map((country: any) => {
-                    return <Option value={country.code}>{country.name}</Option>;
+                    return (
+                      <Option
+                        key={`country-${country.code}`}
+                        value={country.code}
+                      >
+                        {country.name}
+                      </Option>
+                    );
                   })}
                 </Select>
               </Form.Item>
@@ -428,7 +439,11 @@ const AppointmentPage: NextPage = () => {
                   }
                 >
                   {buyerList.map((item: any) => {
-                    return <Option value={item.id}>{item.name}</Option>;
+                    return (
+                      <Option key={`buyer-${item.id}`} value={item.id}>
+                        {item.name}
+                      </Option>
+                    );
                   })}
                 </Select>
               </Form.Item>
@@ -459,7 +474,14 @@ const AppointmentPage: NextPage = () => {
                   }
                 >
                   {companyCategoryList.map((item: any) => {
-                    return <Option value={item.id}>{item.name}</Option>;
+                    return (
+                      <Option
+                        key={`companyCategoryList-${item.id}`}
+                        value={item.id}
+                      >
+                        {item.name}
+                      </Option>
+                    );
                   })}
                 </Select>
               </Form.Item>
@@ -483,7 +505,14 @@ const AppointmentPage: NextPage = () => {
                   }
                 >
                   {productCategoryList.map((item: any) => {
-                    return <Option value={item.id}>{item.name}</Option>;
+                    return (
+                      <Option
+                        key={`productCategoryList-${item.id}`}
+                        value={item.id}
+                      >
+                        {item.name}
+                      </Option>
+                    );
                   })}
                 </Select>
               </Form.Item>
@@ -509,7 +538,11 @@ const AppointmentPage: NextPage = () => {
                   }
                 >
                   {buyerList.map((item: any) => {
-                    return <Option value={item.id}>{item.name}</Option>;
+                    return (
+                      <Option key={`buyerList-${item.id}`} value={item.id}>
+                        {item.name}
+                      </Option>
+                    );
                   })}
                 </Select>
               </Form.Item>
