@@ -67,9 +67,9 @@ const config = {
     },
   },
   meta: {
-    type: {
-      alias: '类别',
-    },
+    // type: {
+    //   alias: '类别',
+    // },
     sales: {
       alias: 'value',
     },
