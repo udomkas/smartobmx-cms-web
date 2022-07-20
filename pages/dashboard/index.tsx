@@ -50,16 +50,16 @@ const config = {
   data,
   xField: 'type',
   yField: 'sales',
-  label: {
-    // 可手动配置 label 数据标签位置
-    position: 'middle',
-    // 'top', 'bottom', 'middle',
-    // 配置样式
-    style: {
-      fill: '#FFFFFF',
-      opacity: 0.6,
-    },
-  },
+  // label: {
+  //   // 可手动配置 label 数据标签位置
+  //   position: 'middle',
+  //   // 'top', 'bottom', 'middle',
+  //   // 配置样式
+  //   style: {
+  //     fill: '#FFFFFF',
+  //     opacity: 0.6,
+  //   },
+  // },
   xAxis: {
     label: {
       autoHide: true,
@@ -138,7 +138,7 @@ const HomePage: NextPage = () => {
         <Row gutter={48} justify="center" align="top" className="mb-1">
           <Col span={16}>
             <Title level={3}>Product Value</Title>
-            <Column {...(config as any)} />
+            <Column {...config} />
           </Col>
           <Col span={8}>
             <Row gutter={24}>
