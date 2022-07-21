@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { NextPage } from 'next';
-import FullCalendar from '@fullcalendar/react';
+import FullCalendar, { ViewApi } from '@fullcalendar/react';
 import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -308,10 +308,15 @@ const AppointmentPage: NextPage = () => {
         allDayText={'A All Day'}
         initialView="dayGridMonth"
         dateClick={handleDateSelect}
+        height={'auto'}
         headerToolbar={{
           left: 'today prev,next',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek',
+          right: '',
+          // right: 'dayGridMonth,timeGridWeek',
+        }}
+        windowResize={({ view }) => {
+          console.log('windowResize', view.currentEnd, view.currentStart);
         }}
         events={dataEvents}
       />
@@ -579,7 +584,9 @@ const AppointmentPage: NextPage = () => {
                 name="isNeedTranslator"
                 label="Would you like english translator for this meeting?"
               >
-                <Checkbox onChange={onChangeCheckTranslator}>Yes</Checkbox>
+                <Checkbox onChange={onChangeCheckTranslator} checked={false}>
+                  Yes
+                </Checkbox>
               </Form.Item>
             </Col>
             <Divider />

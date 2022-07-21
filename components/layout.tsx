@@ -38,13 +38,16 @@ export const MainLayout = ({ children }: any) => {
           theme="dark"
           mode="inline"
           className="bg-navi-blue"
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={['menu-1']}
           items={[
             {
               key: 'menu-1',
               icon: <UserOutlined />,
               label: 'Dashboard',
-              onClick: () => router.push('/'),
+              onClick: (e) => {
+                console.log('click ', e, e.key);
+                router.push('/dashboard');
+              },
             },
             {
               key: 'menu-2',
@@ -56,7 +59,18 @@ export const MainLayout = ({ children }: any) => {
               key: 'menu-3',
               icon: <TeamOutlined />,
               label: 'Member',
-              onClick: () => router.push('/member'),
+              children: [
+                {
+                  key: 'menu-3-1',
+                  label: 'Buyer',
+                  onClick: () => router.push('/member'),
+                },
+                {
+                  key: 'menu-3-2',
+                  label: 'Seller',
+                  onClick: () => router.push('/member'),
+                },
+              ],
             },
             {
               key: 'menu-4',
@@ -68,7 +82,23 @@ export const MainLayout = ({ children }: any) => {
               key: 'menu-5',
               icon: <SettingOutlined />,
               label: 'Setting',
-              onClick: () => router.push('/setting'),
+              children: [
+                {
+                  key: 'menu-5-1',
+                  label: 'Manage User',
+                  onClick: () => router.push('/setting'),
+                },
+                {
+                  key: 'menu-5-2',
+                  label: 'Manage Role',
+                  onClick: () => router.push('/setting'),
+                },
+                {
+                  key: 'menu-5-3',
+                  label: 'Activity Log',
+                  onClick: () => router.push('/setting'),
+                },
+              ],
             },
           ]}
         />
