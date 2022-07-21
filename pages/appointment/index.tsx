@@ -27,6 +27,7 @@ import {
   Table,
   Tag,
   Badge,
+  Tooltip,
 } from 'antd';
 import {
   CheckCircleOutlined,
@@ -160,7 +161,6 @@ const AppointmentPage: NextPage = () => {
       dataIndex: 'appointmentDate',
       key: 'appointmentDate',
       render: (appointmentDate) => {
-        console.log(appointmentDate);
         const startDate: any = moment(appointmentDate);
         const endDate: any = moment(appointmentDate).add(30, 'minute');
         return (
@@ -308,7 +308,11 @@ const AppointmentPage: NextPage = () => {
         allDayText={'A All Day'}
         initialView="dayGridMonth"
         dateClick={handleDateSelect}
-        headerToolbar={{ center: 'dayGridMonth,timeGridWeek' }}
+        headerToolbar={{
+          left: 'today prev,next',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek',
+        }}
         events={dataEvents}
       />
 
@@ -630,21 +634,28 @@ const AppointmentPage: NextPage = () => {
                   className="btn-dark"
                   size="large"
                   style={{ width: '250px' }}
+                  onClick={() => window.open('https://zoom.us/', '_blank')}
                 >
                   Join Zoom meeting
                 </Button>
-                <Button
-                  type="link"
-                  shape="circle"
-                  icon={<CopyOutlined />}
-                  size="large"
-                />
+                <Tooltip placement="top" title={`Copied!`} trigger="click">
+                  <Button
+                    type="link"
+                    shape="circle"
+                    icon={<CopyOutlined />}
+                    size="large"
+                  />
+                </Tooltip>
               </Col>
             </Row>
             <Divider />
             <Row>
               <Col span={24} className="align-center">
-                <Button size="large" style={{ width: '350px' }}>
+                <Button
+                  size="large"
+                  style={{ width: '350px' }}
+                  onClick={() => handleAppointCancel()}
+                >
                   Cancel appointment
                 </Button>
               </Col>

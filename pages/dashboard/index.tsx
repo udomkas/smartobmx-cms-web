@@ -1,3 +1,6 @@
+import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import {
   Button,
   Col,
@@ -7,15 +10,13 @@ import {
   Typography,
   Space,
   Divider,
+  Tooltip,
 } from 'antd';
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
-import { Line } from '@ant-design/charts';
+// import { Line } from '@ant-design/charts';
 import { Column } from '@ant-design/plots';
-import type { NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+
 import { MainLayout } from '../../components/layout';
-import { SP } from 'next/dist/shared/lib/utils';
 
 const { Title, Paragraph, Text, Link } = Typography;
 
@@ -34,7 +35,7 @@ const data = [
   },
   {
     type: 'product4',
-    sales: 145,
+    sales: 125,
   },
   {
     type: 'product5',
@@ -50,16 +51,16 @@ const config = {
   data,
   xField: 'type',
   yField: 'sales',
-  // label: {
-  //   // 可手动配置 label 数据标签位置
-  //   position: 'middle',
-  //   // 'top', 'bottom', 'middle',
-  //   // 配置样式
-  //   style: {
-  //     fill: '#FFFFFF',
-  //     opacity: 0.6,
-  //   },
-  // },
+  label: {
+    //   // 可手动配置 label 数据标签位置
+    position: 'middle',
+    //   // 'top', 'bottom', 'middle',
+    //   // 配置样式
+    style: {
+      fill: '#FFFFFF',
+      opacity: 0.6,
+    },
+  },
   xAxis: {
     label: {
       autoHide: true,
@@ -67,9 +68,9 @@ const config = {
     },
   },
   meta: {
-    // type: {
-    //   alias: '类别',
-    // },
+    type: {
+      alias: 'name',
+    },
     sales: {
       alias: 'value',
     },
@@ -78,11 +79,13 @@ const config = {
 
 const HomePage: NextPage = () => {
   const router = useRouter();
-  useEffect(() => {}, []);
+  const [chartData, setChartData]: any = useState();
+  useEffect(() => {
+    setChartData(config);
+  }, []);
 
   return (
     <MainLayout>
-      <Title level={3}>Dashboard</Title>
       <Row gutter={48} justify="center" align="middle" className="mb-1">
         <Col span={8}>
           <Card>
@@ -138,7 +141,7 @@ const HomePage: NextPage = () => {
         <Row gutter={48} justify="center" align="top" className="mb-1">
           <Col span={16}>
             <Title level={3}>Product Value</Title>
-            <Column {...config} />
+            {chartData && <Column {...chartData} />}
           </Col>
           <Col span={8}>
             <Row gutter={24}>
@@ -153,7 +156,7 @@ const HomePage: NextPage = () => {
                   <Col span={12}>
                     <Text>มูลค่าการซื้อของสินค้า</Text>
                     <Title level={3} className="mt-1">
-                      680K
+                      999K
                     </Title>
                   </Col>
                 </Row>
@@ -189,7 +192,7 @@ const HomePage: NextPage = () => {
                   <Col span={12}>
                     <Text>มูลค่าการซื้อของสินค้า</Text>
                     <Title level={3} className="mt-1">
-                      789K
+                      678K
                     </Title>
                   </Col>
                 </Row>
