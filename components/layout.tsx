@@ -25,6 +25,17 @@ export const MainLayout = ({ children }: any) => {
     setCurrent(e.key);
   };
 
+  const renderBreadcrumb = () => {
+    const path = router.asPath;
+    const pathBreadcrumb = path.split('/');
+    const breadcrumbList: any = pathBreadcrumb.map((path) => {
+      return <Breadcrumb.Item>{path}</Breadcrumb.Item>;
+    });
+    return (
+      <Breadcrumb style={{ margin: '1rem 0' }}>{breadcrumbList}</Breadcrumb>
+    );
+  };
+
   return (
     <Layout className="main-layout" style={{ minHeight: '100vh' }}>
       <Sider
@@ -63,12 +74,12 @@ export const MainLayout = ({ children }: any) => {
                 {
                   key: 'menu-3-1',
                   label: 'Buyer',
-                  onClick: () => router.push('/member'),
+                  onClick: () => router.push('/member/buyer'),
                 },
                 {
                   key: 'menu-3-2',
                   label: 'Seller',
-                  onClick: () => router.push('/member'),
+                  onClick: () => router.push('/member/seller'),
                 },
               ],
             },
@@ -86,17 +97,17 @@ export const MainLayout = ({ children }: any) => {
                 {
                   key: 'menu-5-1',
                   label: 'Manage User',
-                  onClick: () => router.push('/setting'),
+                  onClick: () => router.push('/setting/user'),
                 },
                 {
                   key: 'menu-5-2',
                   label: 'Manage Role',
-                  onClick: () => router.push('/setting'),
+                  onClick: () => router.push('/setting/role'),
                 },
                 {
                   key: 'menu-5-3',
                   label: 'Activity Log',
-                  onClick: () => router.push('/setting'),
+                  onClick: () => router.push('/setting/log'),
                 },
               ],
             },
@@ -114,9 +125,7 @@ export const MainLayout = ({ children }: any) => {
           </Row>
         </Header>
         <Content style={{ margin: '0 1rem' }}>
-          <Breadcrumb style={{ margin: '1rem 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-          </Breadcrumb>
+          {renderBreadcrumb()}
           <Content
             className="bg-white"
             style={{ padding: '1rem', minHeight: '80vh' }}

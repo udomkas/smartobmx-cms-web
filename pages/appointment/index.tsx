@@ -122,7 +122,6 @@ const AppointmentPage: NextPage = () => {
 
   const handleDateSelect = (selectInfo: any) => {
     const calendar = selectInfo.view.calendar;
-    // setCalendarApi(calendar);
     setSelectInfoData(selectInfo);
     setStartDate(moment(selectInfo.date));
     form.setFieldsValue({
