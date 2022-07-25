@@ -8,7 +8,7 @@ const HomePage: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
     router.push('/dashboard');
-  }, []);
+  }, [router]);
 
   return (
     <div style={{ height: '100vh', padding: '50vh 50vw' }}>

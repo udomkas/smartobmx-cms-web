@@ -28,8 +28,12 @@ export const MainLayout = ({ children }: any) => {
   const renderBreadcrumb = () => {
     const path = router.asPath;
     const pathBreadcrumb = path.split('/');
-    const breadcrumbList: any = pathBreadcrumb.map((path) => {
-      return <Breadcrumb.Item>{path}</Breadcrumb.Item>;
+    const breadcrumbList: any = pathBreadcrumb.map((path, index) => {
+      return (
+        <Breadcrumb.Item key={`breadcrumbList-${index}`}>
+          {path}
+        </Breadcrumb.Item>
+      );
     });
     return (
       <Breadcrumb style={{ margin: '1rem 0' }}>{breadcrumbList}</Breadcrumb>
